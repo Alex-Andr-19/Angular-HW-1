@@ -1,0 +1,30 @@
+table {
+  border-collapse: collapse;
+}
+
+table tr:nth-child(2n) {
+  background: lightgrey;
+}
+
+table tr:not(:last-child) {
+  border-bottom: 2px solid black;
+}
+
+table tr.find {
+  background: black;
+
+  color: white;
+}
+
+table tr.bad {
+  color: #b30303;
+  font-weight: bold;
+}
+
+td {
+  width: 80px;
+
+  padding: 8px;
+
+  text-align: center;
+}

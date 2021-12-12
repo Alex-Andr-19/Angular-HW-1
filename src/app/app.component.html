@@ -1,0 +1,55 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Father name</th>
+    <th>Birth date</th>
+    <th>Marks</th>
+  </tr>
+  <tr>
+    <td><input #searchLineName type="text" (input)="findStudent(searchLineName.value, 'name')"><br></td>
+    <td><input #searchLineSurname type="text" (input)="findStudent(searchLineSurname.value, 'surname')"></td>
+    <td><input #searchLineFatherName type="text" (input)="findStudent(searchLineFatherName.value, 'fatherName')"></td>
+    <td><input #searchLineBirthDate type="text" (input)="findStudent(searchLineBirthDate.value, 'birthDate')"></td>
+    <td>
+      <select #markFilter name="markFilter" id="markFilter" (change)="filterStudents(markFilter)">
+        <option value="all">All</option>
+        <option value="twoToThree">2 to 3</option>
+        <option value="threeToFour">3 to 4</option>
+        <option value="fourToFive">4 to 5</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+<br>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Father name</th>
+    <th>Birth date</th>
+    <th>Mark</th>
+  </tr>
+  <tr *ngFor="let student of getStudents(); let i = index"
+      [class]="setClass(student)">
+    <td *ngIf="!student.deleted && student.filtered">№{{i + 1}}</td>
+    <td *ngIf="!student.deleted && student.filtered">{{student.studentName}}</td>
+    <td *ngIf="!student.deleted && student.filtered">{{student.surname}}</td>
+    <td *ngIf="!student.deleted && student.filtered">{{student.fatherName}}</td>
+    <td *ngIf="!student.deleted && student.filtered">{{student.birthDate.getDate() < 10 ? '0' + student.birthDate.getDate() : student.birthDate.getDate()}}.{{student.birthDate.getMonth() < 10 ? '0' + student.birthDate.getMonth() : student.birthDate.getMonth()}}.{{student.birthDate.getFullYear()}}</td>
+    <td *ngIf="!student.deleted && student.filtered">{{student.severalMark}}</td>
+    <td *ngIf="!student.deleted && student.filtered">
+      <button (click)="deleteStudent(student)">
+        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png" width="25px">
+      </button>
+    </td>
+  </tr>
+</table>
