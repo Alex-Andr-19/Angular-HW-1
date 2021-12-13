@@ -1,3 +1,19 @@
+h1 {
+  margin: 0;
+}
+
+.settings h1 {
+  width: auto;
+
+  display: inline;
+}
+.settings .toggleNoticeBadMarks {
+  margin-left: 1em;
+  margin-bottom: 1em;
+
+  display: inline-block;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -27,4 +43,30 @@ td {
   padding: 8px;
 
   text-align: center;
+}
+
+.popUp {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+
+  width: 30%;
+  height: 20%;
+
+  padding: 1em;
+
+  background: white;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+
+  color: black
+}
+
+.flex-just-sp-ar {
+  width: 100%;
+
+  margin-top: 3em;
+
+  display: flex;
+  justify-content: space-around;
 }

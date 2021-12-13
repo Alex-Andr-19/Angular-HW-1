@@ -1,12 +1,12 @@
 export class Student {
-  _studentName: string = "";
-  _surname: string = "";
-  _fatherName: string = "";
-  _birthDate: Date = new Date();
-  _severalMark: number = .0;
-  _find: boolean = false;
-  _filtered: boolean = true;
-  _deleted: boolean = false;
+  private _studentName: string;
+  private _surname: string;
+  private _fatherName: string;
+  private _birthDate: Date;
+  private _severalMark: number;
+  private _find: boolean = false;
+  private _filtered: boolean = true;
+  private _deleted: boolean = false;
 
   constructor(name: string, surname: string, fatherName: string, birthDate: Date, severalMark: number ) {
     this._studentName = name;
@@ -69,5 +69,4 @@ export class Student {
 
     return res;
   }
-
 }

@@ -9,14 +9,17 @@ import { Student } from "./Student";
 
 export class AppComponent {
   title = "Angular";
-  students: Student[] = [];
+
+  rootStudents: Student[] = [];
+  showStudents: Student[] = [];
+
+  showPopUp: boolean = false;
+  tryToDelStudent: Student = new Student('a', 'b', 'c', new Date(), 0);
+
+  enableToNoticeBadMarks: boolean = true;
 
   constructor() {
     this.generateStudents();
-  }
-
-  getStudents(): Student[] {
-    return this.students;
   }
 
   generateStudents(): void {
@@ -33,14 +36,27 @@ export class AppComponent {
 
     console.log(studentNames);
     for (let i: number = 0; i < studentNames.length; i++) {
-      this.students.push(new Student(
+      this.rootStudents.push(new Student(
         studentNames[i],
         surnames[i],
         fatherNames[i],
         birthDates[i],
         severalMarks[i],
       ));
+      this.showStudents.push(this.rootStudents[i]);
     }
+  }
+
+  getStudents(): Student[] {
+    return this.showStudents;
+  }
+
+  getNoticeBadMarks(): boolean {
+    return this.enableToNoticeBadMarks;
+  }
+
+  toggleNoticeBadMarks(): void {
+    this.enableToNoticeBadMarks = !this.enableToNoticeBadMarks;
   }
 
   setClass(student: Student): string {
@@ -50,7 +66,7 @@ export class AppComponent {
       res += "find ";
     }
 
-    if (student.severalMark < 3) {
+    if (student.severalMark < 3 && this.enableToNoticeBadMarks) {
       res += "bad ";
     } else {
       res += "normal ";
@@ -59,10 +75,10 @@ export class AppComponent {
     return res;
   }
 
-  filterStudents(markFilter: HTMLSelectElement): void {
+  filterStudentsByMarks(markFilter: HTMLSelectElement): void {
+    this.showStudents = [];
 
-    for (const student of this.students){
-      console.log(student);
+    for (const student of this.rootStudents){
       if (markFilter.value === "all") {
         student.filtered = true;
       } else {
@@ -70,22 +86,50 @@ export class AppComponent {
         (markFilter.value === "threeToFour" && !(student.severalMark >= 3 && student.severalMark < 4)) ||
         (markFilter.value === "fourToFive" && !(student.severalMark >= 4 && student.severalMark <= 5)));
       }
+
+      if (student.filtered && !student.deleted) {
+        this.showStudents.push(student);
+      }
+    }
+    console.log(this.showStudents);
+  }
+
+  filterStudentsByDate(date: HTMLInputElement): void {
+    this.showStudents = [];
+    let selectDate: Date = new Date(date.value);
+
+    for (const student of this.rootStudents) {
+      student.filtered = selectDate < student.birthDate;
+      if (student.filtered && !student.deleted) {
+        this.showStudents.push(student);
+      }
     }
     console.log();
   }
 
-  deleteStudent(student: Student): void {
-    student.deleted = true;
+  deleteStudent(): void {
+
+    this.showStudents = [];
+
+    this.tryToDelStudent.deleted = true;
+
+    for (let localStudent of this.rootStudents) {
+      if (!localStudent.deleted) {
+        this.showStudents.push(localStudent);
+      }
+    }
+
+    this.togglePopUp();
   }
 
   findStudent(name: string, param: string): void {
     if (name === "") {
-      for (const student of this.students) {
+      for (const student of this.rootStudents) {
         student.find = false;
       }
       return;
     }
-    for (const student of this.students) {
+    for (const student of this.rootStudents) {
       switch (param) {
         case "name":
           student.find = student.studentName.toLowerCase().includes(name.toLowerCase());
@@ -96,17 +140,31 @@ export class AppComponent {
         case "fatherName":
           student.find = student.fatherName.toLowerCase().includes(name.toLowerCase());
           break;
-        case "birthDate":
-          student.find = student.beautifulBirthDate().includes(name);
-          break;
         default:
           break;
       }
     }
   }
 
-  printElem(elem: HTMLSelectElement): string {
-    console.log(elem.value);
-    return "default";
+  getShowPopUp(): boolean {
+    return this.showPopUp;
+  }
+
+  togglePopUp(student?: Student): void {
+    if (student) {
+      this.tryToDelStudent = student;
+    }
+    this.showPopUp = !this.showPopUp;
+  }
+
+  clearFilters(): void {
+    this.showStudents = [];
+    for (let student of this.rootStudents) {
+      student.find = false;
+      student.filtered = true;
+      student.deleted = false;
+
+      this.showStudents.push(student);
+    }
   }
 }
