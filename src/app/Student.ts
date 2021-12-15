@@ -69,4 +69,21 @@ export class Student {
 
     return res;
   }
+
+  getProp(key: string): Date | number | string  {
+    switch (key) {
+      case "name":
+        return this.studentName;
+      case "surname":
+        return this.surname;
+      case "fatherName":
+        return this.fatherName;
+      case "birthDate":
+        return this.birthDate;
+      case "marks":
+        return this.severalMark;
+      default:
+        return this.studentName;
+    }
+  }
 }

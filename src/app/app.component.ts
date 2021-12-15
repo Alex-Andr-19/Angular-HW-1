@@ -14,9 +14,18 @@ export class AppComponent {
   showStudents: Student[] = [];
 
   showPopUp: boolean = false;
-  tryToDelStudent: Student = new Student('a', 'b', 'c', new Date(), 0);
+  // Exemplar of temporary student, which client tries to delete
+  tryToDelStudent: Student = new Student("a", "b", "c", new Date(), 0);
 
   enableToNoticeBadMarks: boolean = true;
+
+  sortParams: { [key: string]: number } = {
+    "name": 0,
+    "surname": 0,
+    "fatherName": 0,
+    "birthDate": 0,
+    "marks": 0
+  };
 
   constructor() {
     this.generateStudents();
@@ -34,7 +43,6 @@ export class AppComponent {
     ];
     const severalMarks: number[] = [4.3, 4.8, 3.9, 2.8];
 
-    console.log(studentNames);
     for (let i: number = 0; i < studentNames.length; i++) {
       this.rootStudents.push(new Student(
         studentNames[i],
@@ -91,12 +99,11 @@ export class AppComponent {
         this.showStudents.push(student);
       }
     }
-    console.log(this.showStudents);
   }
 
   filterStudentsByDate(date: HTMLInputElement): void {
     this.showStudents = [];
-    let selectDate: Date = new Date(date.value);
+    const selectDate: Date = new Date(date.value);
 
     for (const student of this.rootStudents) {
       student.filtered = selectDate < student.birthDate;
@@ -104,7 +111,6 @@ export class AppComponent {
         this.showStudents.push(student);
       }
     }
-    console.log();
   }
 
   deleteStudent(): void {
@@ -113,7 +119,7 @@ export class AppComponent {
 
     this.tryToDelStudent.deleted = true;
 
-    for (let localStudent of this.rootStudents) {
+    for (const localStudent of this.rootStudents) {
       if (!localStudent.deleted) {
         this.showStudents.push(localStudent);
       }
@@ -146,6 +152,40 @@ export class AppComponent {
     }
   }
 
+  sortStudent(param: string): void {
+    // @ts-ignore
+    for (const key: string in this.sortParams) {
+      if (key !== param) {
+        this.sortParams[key] = 0;
+      }
+    }
+    if (this.sortParams[param] !== -1) {
+      this.showStudents.sort((a: Student, b: Student): number => {
+        if (a.getProp(param) > b.getProp(param)) {
+          return 1;
+        } if (a.getProp(param) < b.getProp(param)) {
+          return -1;
+        }
+        return 0;
+      });
+
+      if (this.sortParams[param] === 0) {
+        this.sortParams[param] = 1;
+      } else {
+        this.sortParams[param] = -1;
+        this.showStudents.reverse();
+      }
+    } else {
+      this.sortParams[param] = 0;
+      this.showStudents = [];
+      for (const student of this.rootStudents) {
+        if (student.filtered && !student.deleted) {
+          this.showStudents.push(student);
+        }
+      }
+    }
+  }
+
   getShowPopUp(): boolean {
     return this.showPopUp;
   }
@@ -157,14 +197,23 @@ export class AppComponent {
     this.showPopUp = !this.showPopUp;
   }
 
-  clearFilters(): void {
+  clearFilters(...args: (HTMLInputElement | HTMLSelectElement)[]): void {
+    for (const el of args) {
+      el.value = el.tagName === "INPUT" ? "" : el.value = "all";
+    }
+
     this.showStudents = [];
-    for (let student of this.rootStudents) {
+    for (const student of this.rootStudents) {
       student.find = false;
       student.filtered = true;
       student.deleted = false;
 
       this.showStudents.push(student);
+    }
+
+    // @ts-ignore
+    for (const key: string in this.sortParams) {
+      this.sortParams[key] = 0;
     }
   }
 }

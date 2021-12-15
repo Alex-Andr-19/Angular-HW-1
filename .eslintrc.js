@@ -211,7 +211,7 @@ module.exports = {
                     "error",
                     "smart",
                 ],
-                "guard-for-in": "error",
+                "guard-for-in": "off",
                 "max-len": [
                     "error",
                     {

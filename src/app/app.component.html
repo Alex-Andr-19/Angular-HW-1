@@ -1,9 +1,9 @@
 <div class="settings">
-  <h1>Notice bad marks</h1>
+  <h2>Settings</h2>
+  <span>Notice bad marks</span>
   <div [ngSwitch]="getNoticeBadMarks()" class="toggleNoticeBadMarks">
     <button *ngSwitchCase="true" (click)="toggleNoticeBadMarks()">Disable</button>
     <button *ngSwitchCase="false" (click)="toggleNoticeBadMarks()">Enable</button>
-    <button *ngSwitchDefault>Enable</button>
   </div>
 </div>
 
@@ -20,11 +20,41 @@
 
   <tr>
     <td><h1>№</h1></td>
-    <td><input #searchLineName type="text" (input)="findStudent(searchLineName.value, 'name')"><br></td>
-    <td><input #searchLineSurname type="text" (input)="findStudent(searchLineSurname.value, 'surname')"></td>
-    <td><input #searchLineFatherName type="text" (input)="findStudent(searchLineFatherName.value, 'fatherName')"></td>
-    <td><input #searchLineBirthDate type="date" (input)="filterStudentsByDate(searchLineBirthDate)"></td>
     <td>
+      <button class="sortButton" (click)="sortStudent('name')" [ngSwitch]="sortParams['name']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineName type="text" (input)="findStudent(searchLineName.value, 'name')"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('surname')" [ngSwitch]="sortParams['surname']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineSurname type="text" (input)="findStudent(searchLineSurname.value, 'surname')"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('fatherName')" [ngSwitch]="sortParams['fatherName']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineFatherName type="text" (input)="findStudent(searchLineFatherName.value, 'fatherName')"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('birthDate')" [ngSwitch]="sortParams['birthDate']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineBirthDate type="date" (input)="filterStudentsByDate(searchLineBirthDate)"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('marks')" [ngSwitch]="sortParams['marks']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+
       <select #markFilter name="markFilter" id="markFilter" (change)="filterStudentsByMarks(markFilter)">
         <option value="all">All</option>
         <option value="twoToThree">2 to 3</option>
@@ -32,7 +62,18 @@
         <option value="fourToFive">4 to 5</option>
       </select>
     </td>
-    <td><button (click)="clearFilters()">Clear filters</button></td>
+    <td>
+      <button (click)="
+        clearFilters(
+          searchLineName,
+          searchLineSurname,
+          searchLineFatherName,
+          searchLineBirthDate,
+          markFilter
+        )">
+            Clear filters
+      </button>
+    </td>
   </tr>
 
   <tr *ngFor="let student of getStudents(); let i = index"
