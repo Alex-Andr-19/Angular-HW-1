@@ -36,6 +36,8 @@ td .sortButton {
 }
 
 table {
+  width: 75%;
+
   border-collapse: collapse;
 }
 
@@ -93,4 +95,42 @@ td {
 
   display: flex;
   justify-content: space-around;
+}
+
+form {
+  margin-top: 1em;
+}
+
+.inputBox {
+  width: 300px;
+
+  margin-top: 0.5em;
+
+  clear: both;
+  text-align: right;
+}
+.inputBox label {
+  float: left;
+}
+.inputBox input {
+  width: 150px;
+}
+.inputBox input[type="date"] {
+  width: 152px;
+}
+
+form button {
+  margin-top: 0.5em;
+}
+
+.error > div {
+  width: 15%;
+
+  padding: 1em;
+  margin: 1em;
+
+  background: #9e0202;
+  border-radius: 15px;
+
+  color: white;
 }

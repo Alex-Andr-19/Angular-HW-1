@@ -90,7 +90,63 @@
       </button>
     </td>
   </tr>
+
 </table>
+
+<form [formGroup]="inputForms" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
+  <div formGroupName="fio">
+    <div class="inputBox">
+      <label for="name">Name</label>
+      <input type="text"
+             formControlName="name"
+             id="name"
+             required><br>
+    </div>
+
+    <div class="inputBox">
+      <label for="surname">Surname</label>
+      <input type="text"
+             id="surname"
+             formControlName="surname"
+             required><br>
+    </div>
+
+    <div class="inputBox">
+    <label for="fatherName">Father Name</label>
+    <input type="text"
+           id="fatherName"
+           formControlName="fatherName"
+           required><br>
+  </div>
+  </div>
+
+  <div class="inputBox">
+    <label for="birthDate">Birth Date</label>
+    <input type="date"
+           id="birthDate"
+           formControlName="birthDate"
+           required><br>
+  </div>
+
+  <div class="inputBox">
+    <label for="mark">Mark</label>
+    <input type="text"
+           id="mark"
+           formControlName="mark"
+           required><br>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+<div class="error">
+  <div class="correctYearsOldBanner" *ngIf="!correctYearsOld">
+    You're have to be older then 10 years.
+  </div>
+
+  <div class="correctName" *ngIf="!correctName">
+    Your name have to not be equal with Surname or Father Name.
+  </div>
+</div>
 
 <div class="popUp" *ngIf="getShowPopUp()">
   <h3>Are you sure about that?</h3>
