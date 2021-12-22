@@ -5,6 +5,24 @@ h1 {
 td {
   position: relative;
 }
+
+.main {
+  padding: 1em;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.main .left {
+  width: 75%;
+}
+.main .right {
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+}
+
 td .sortButton {
   position: absolute;
   top: 1px;
@@ -19,8 +37,6 @@ td .sortButton {
 }
 
 .settings {
-  width: 20%;
-
   padding: 1em;
 
   border: 1px solid lightgrey;
@@ -36,7 +52,7 @@ td .sortButton {
 }
 
 table {
-  width: 75%;
+  width: 100%;
 
   border-collapse: collapse;
 }
@@ -95,42 +111,4 @@ td {
 
   display: flex;
   justify-content: space-around;
-}
-
-form {
-  margin-top: 1em;
-}
-
-.inputBox {
-  width: 300px;
-
-  margin-top: 0.5em;
-
-  clear: both;
-  text-align: right;
-}
-.inputBox label {
-  float: left;
-}
-.inputBox input {
-  width: 150px;
-}
-.inputBox input[type="date"] {
-  width: 152px;
-}
-
-form button {
-  margin-top: 0.5em;
-}
-
-.error > div {
-  width: 15%;
-
-  padding: 1em;
-  margin: 1em;
-
-  background: #9e0202;
-  border-radius: 15px;
-
-  color: white;
 }

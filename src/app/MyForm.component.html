@@ -1,0 +1,77 @@
+<form [formGroup]="numberForm" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
+  <div class="inputBox">
+    <label for="number">№</label>
+    <input type="text"
+           id="number"
+           formControlName="number"
+           required
+           (input)="disableButton(addStudent, 'number')"><br>
+  </div>
+  <button type="submit">Edit</button>
+</form>
+<form [formGroup]="inputForms" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
+
+  <div formGroupName="fio">
+    <div class="inputBox">
+      <label for="name">Name</label>
+      <input type="text"
+             formControlName="name"
+             id="name"
+             required><br>
+    </div>
+
+    <div class="inputBox">
+      <label for="surname">Surname</label>
+      <input type="text"
+             id="surname"
+             formControlName="surname"
+             required><br>
+    </div>
+
+    <div class="inputBox">
+      <label for="fatherName">Father Name</label>
+      <input type="text"
+             id="fatherName"
+             formControlName="fatherName"
+             required><br>
+    </div>
+  </div>
+
+  <div class="inputBox">
+    <label for="birthDate">Birth Date</label>
+    <input type="date"
+           id="birthDate"
+           formControlName="birthDate"
+           required><br>
+  </div>
+
+  <div class="inputBox">
+    <label for="mark">Mark</label>
+    <input type="text"
+           id="mark"
+           formControlName="mark"
+           required><br>
+  </div>
+
+  <div class="flex-jc-sp-b">
+    <button #addStudent type="submit">Add</button>
+    <button type="submit">Clear</button>
+  </div>
+</form>
+<div class="error">
+  <div class="correctYearsOldBanner" *ngIf="inputForms.get('birthDate')?.errors && inputForms.get('birthDate')?.dirty">
+    You're have to be older then 10 years.
+  </div>
+
+  <div class="correctName" *ngIf="inputForms.get('fio')?.errors && inputForms.get('fio')?.dirty">
+    Your name have to not be equal with Surname or Father Name.
+  </div>
+
+  <div class="correctName" *ngIf="inputForms.get('mark')?.errors && inputForms.get('mark')?.dirty">
+    Several mark have to be number
+  </div>
+
+  <div class="correctName" *ngIf="numberForm.get('number')?.errors && numberForm.get('number')?.dirty">
+    Student number have to be integer number
+  </div>
+</div>

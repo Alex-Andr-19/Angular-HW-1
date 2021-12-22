@@ -60,16 +60,6 @@ export class Student {
     this._deleted = value;
   }
 
-  beautifulBirthDate(): string {
-    let res: string = this.birthDate.getDate() < 10 ? "0" + this.birthDate.getDate() : this.birthDate.getDate().toString();
-    res += ".";
-    res += this.birthDate.getMonth() < 10 ? "0" + this.birthDate.getMonth() : this.birthDate.getMonth().toString();
-    res += ".";
-    res += this.birthDate.getFullYear().toString();
-
-    return res;
-  }
-
   getProp(key: string): Date | number | string  {
     switch (key) {
       case "name":
@@ -85,5 +75,23 @@ export class Student {
       default:
         return this.studentName;
     }
+  }
+
+  getAllProps(): string[] {
+    return ["studentName", "surname", "fatherName", "birthDate", "severalMark", "find", "filtered", "deleted"];
+  }
+
+  isEqual(student: Student): boolean {
+    let res: boolean = true;
+
+    const allProps: string[] = this.getAllProps();
+    for (let prop of allProps) {
+      if (this.getProp(prop) !== student.getProp(prop)) {
+        res = false;
+        break;
+      }
+    }
+
+    return res;
   }
 }

@@ -1,0 +1,43 @@
+form {
+  margin-top: 1em;
+}
+
+.inputBox {
+  width: 300px;
+
+  margin-top: 0.5em;
+
+  clear: both;
+  text-align: right;
+}
+.inputBox label {
+  float: left;
+}
+.inputBox input {
+  width: 150px;
+}
+.inputBox input[type="date"] {
+  width: 152px;
+}
+
+form button {
+  margin-top: 0.5em;
+}
+
+.error > div {
+  padding: 1em;
+  margin: 1em;
+
+  background: #fdc0c0;
+  border-left: 2px solid #c72525;
+
+  vertical-align: center;
+  color: darkred;
+}
+
+.flex-jc-sp-b {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}

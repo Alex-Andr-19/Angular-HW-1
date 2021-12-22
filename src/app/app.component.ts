@@ -1,7 +1,5 @@
 import { Component } from "@angular/core";
 import { Student } from "./Student";
-import { FormControl, FormGroup } from "@angular/forms";
-import {convertElementSourceSpanToLoc} from "@angular-eslint/template-parser/dist/template-parser/src/convert-source-span-to-loc";
 
 @Component({
   selector: "app-root",
@@ -29,17 +27,7 @@ export class AppComponent {
     "marks": 0
   };
 
-  inputForms: FormGroup = new FormGroup({
-    fio: new FormGroup({
-      name: new FormControl(""),
-      surname: new FormControl(""),
-      fatherName: new FormControl(""),
-    }),
-    birthDate: new FormControl(""),
-    mark: new FormControl(""),
-  });
-  correctYearsOld: boolean = true;
-  correctName: boolean = true;
+
 
   constructor() {
     this.generateStudents();
@@ -229,41 +217,5 @@ export class AppComponent {
     for (const key: string in this.sortParams) {
       this.sortParams[key] = 0;
     }
-  }
-
-  submitForm(ev: InputEvent): void {
-    ev.preventDefault();
-    let validator: boolean = true;
-    const newStudentProps: any[] = [];
-    for (const el in this.inputForms.getRawValue()) {
-      // @ts-ignore
-      const tmpInput: string = this.inputForms.get(el).value;
-      if (tmpInput === "") {
-        validator = false;
-        break;
-      }
-      // @ts-ignore
-      newStudentProps.push(this.inputForms.get(el).value);
-    }
-    const curDate: Date = new Date();
-    const tenYearsOld: Date = new Date(curDate.getFullYear() - 10, curDate.getMonth(), curDate.getDate());
-    this.correctYearsOld = tenYearsOld.getTime() - new Date(newStudentProps[1]).getTime() >= 60 * 60 * 24 * 3650;
-    this.correctName = newStudentProps[0].name !== newStudentProps[0].surname &&
-      newStudentProps[0].name !== newStudentProps[0].fatherName;
-
-    if (validator && this.correctYearsOld && this.correctName) {
-      const newStudent: Student = new Student(
-        newStudentProps[0].name,
-        newStudentProps[0].surname,
-        newStudentProps[0].fatherName,
-        new Date(newStudentProps[1]),
-        Number.parseFloat(newStudentProps[2]),
-        );
-
-      this.rootStudents.push(newStudent);
-      this.showStudents.push(newStudent);
-    }
-    console.log(this.correctYearsOld);
-    console.log(this.correctName);
   }
 }

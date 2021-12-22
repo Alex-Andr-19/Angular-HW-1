@@ -4,10 +4,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
+import { MyFormComponent } from "./MyForm.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    MyFormComponent,
   ],
   imports: [
     BrowserModule,
