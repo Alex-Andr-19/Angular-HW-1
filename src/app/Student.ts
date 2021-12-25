@@ -85,7 +85,7 @@ export class Student {
     let res: boolean = true;
 
     const allProps: string[] = this.getAllProps();
-    for (let prop of allProps) {
+    for (const prop of allProps) {
       if (this.getProp(prop) !== student.getProp(prop)) {
         res = false;
         break;

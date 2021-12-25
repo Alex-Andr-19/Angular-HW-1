@@ -1,4 +1,4 @@
-<form [formGroup]="numberForm" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
+<form [formGroup]="inputForms" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
   <div formGroupName="fio">
     <div class="inputBox">
       <label for="name">Name</label>
@@ -48,21 +48,17 @@
 <!--    </div>-->
     <button type="submit">Clear</button>
   </div>
+  <div class="error">
+    <div class="correctYearsOldBanner" *ngIf="inputForms.get('birthDate')?.errors && inputForms.get('birthDate')?.dirty">
+      You're have to be older then 10 years.
+    </div>
+
+    <div class="correctName" *ngIf="inputForms.get('fio')?.errors && inputForms.get('fio')?.dirty">
+      Your name have to not be equal with Surname or Father Name.
+    </div>
+
+    <div class="correctName" *ngIf="inputForms.get('mark')?.errors && inputForms.get('mark')?.dirty">
+      Several mark have to be number
+    </div>
+  </div>
 </form>
-<div class="error">
-  <div class="correctYearsOldBanner" *ngIf="inputForms.get('birthDate')?.errors && inputForms.get('birthDate')?.dirty">
-    You're have to be older then 10 years.
-  </div>
-
-  <div class="correctName" *ngIf="inputForms.get('fio')?.errors && inputForms.get('fio')?.dirty">
-    Your name have to not be equal with Surname or Father Name.
-  </div>
-
-  <div class="correctName" *ngIf="inputForms.get('mark')?.errors && inputForms.get('mark')?.dirty">
-    Several mark have to be number
-  </div>
-
-  <div class="correctName" *ngIf="numberForm.get('number')?.errors && numberForm.get('number')?.dirty">
-    Student number have to be integer number
-  </div>
-</div>

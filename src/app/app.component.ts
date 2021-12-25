@@ -18,6 +18,7 @@ export class AppComponent {
   // Exemplar of temporary student, which client tries to delete
   tryToDelStudent: Student = new Student("a", "b", "c", new Date(), 0);
   tryToEditStudent: boolean = false;
+  selectedStudent: number = -1;
   tryToAddStudent: boolean = false;
 
   enableToNoticeBadMarks: boolean = true;
@@ -29,8 +30,6 @@ export class AppComponent {
     "birthDate": 0,
     "marks": 0
   };
-
-
 
   constructor() {
     this.generateStudents();
@@ -226,12 +225,17 @@ export class AppComponent {
     }
   }
 
-  togglePopUpForm(student?: Student, flag: string = 'add'): void {
+  togglePopUpForm(flag: string = "add", selectedStudentNum?: HTMLTableCellElement): void {
     this.showPopUpForm = !this.showPopUpForm;
-    if (flag === 'add') {
+    if (flag === "add") {
       this.tryToAddStudent = !this.tryToAddStudent;
     } else {
       this.tryToEditStudent = !this.tryToEditStudent;
+    }
+
+    const tmp: string | undefined = selectedStudentNum?.innerText.substr(1, 10);
+    if (tmp) {
+      this.selectedStudent = Number.parseInt(tmp, 10);
     }
   }
 

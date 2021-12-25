@@ -81,7 +81,7 @@
           <button (click)="togglePopUp(student)">
             <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png" width="25px">
           </button>
-          <button (click)="togglePopUpForm(student, 'edit')">
+          <button (click)="togglePopUpForm('edit', number)">
             <img src="https://toppng.com/uploads/preview/administration-svg-icon-free421851-onlinewebfonts-edit-blue-icon-11553384178sh1bvhzzal.png" width="24px">
           </button>
         </td>
@@ -126,8 +126,18 @@
 </div>
 
 <div class="popUp" *ngIf="getShowPopUpForm()">
-<!--  <div [ngSwitch]="getTryToEditStudent()">-->
-    <my-form *ngIf="getTryToEditStudent()" [rootStudent]="rootStudents" [showStudent]="showStudents" is-editing="true"></my-form>
-    <my-form *ngIf="getTryToAddStudent()" [rootStudent]="rootStudents" [showStudent]="showStudents" is-editing="false"></my-form>
-<!--  </div>-->
+  <div class="edit" *ngIf="getTryToEditStudent()">
+    <span>№{{ selectedStudent }}</span>
+    <button (click)="togglePopUpForm('edit')" class="closePopUpForm">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/1200px-OOjs_UI_icon_close.svg.png" width="10px">
+    </button>
+    <my-form (validatedClick)="togglePopUpForm('edit')" [rootStudent]="rootStudents" [showStudent]="showStudents" [selectedStudent]="selectedStudent" [isEditing]="true"></my-form>
+  </div>
+
+  <div class="addStudent" *ngIf="getTryToAddStudent()">
+    <button (click)="togglePopUpForm()" class="closePopUpForm">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/1200px-OOjs_UI_icon_close.svg.png" width="10px">
+    </button>
+    <my-form (validatedClick)="togglePopUpForm()" [rootStudent]="rootStudents" [showStudent]="showStudents" [isEditing]="false"></my-form>
+  </div>
 </div>

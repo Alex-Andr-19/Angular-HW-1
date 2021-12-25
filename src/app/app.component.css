@@ -70,10 +70,13 @@ table tr.find {
 
   color: white;
 }
-
 table tr.bad {
   color: #b30303;
   font-weight: bold;
+}
+table tr:last-child {
+  background: #eeeeee;
+  height: 50px;
 }
 
 td {
@@ -108,6 +111,9 @@ td:last-child button:last-child {
 .popUp h3 {
   margin: 0;
 }
+.popUp:last-child {
+  /*padding-top: 0;*/
+}
 
 .flex-just-sp-ar {
   width: 100%;
@@ -116,4 +122,13 @@ td:last-child button:last-child {
 
   display: flex;
   justify-content: space-around;
+}
+
+.closePopUpForm {
+  float: right;
+
+  width: 20px;
+  height: 20px;
+
+  padding: 0;
 }
