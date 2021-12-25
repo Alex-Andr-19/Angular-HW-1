@@ -1,16 +1,4 @@
 <form [formGroup]="numberForm" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
-  <div class="inputBox">
-    <label for="number">№</label>
-    <input type="text"
-           id="number"
-           formControlName="number"
-           required
-           (input)="disableButton(addStudent, 'number')"><br>
-  </div>
-  <button type="submit">Edit</button>
-</form>
-<form [formGroup]="inputForms" novalidate (ngSubmit)="submitForm($event)" class="addNewStudent">
-
   <div formGroupName="fio">
     <div class="inputBox">
       <label for="name">Name</label>
@@ -54,7 +42,10 @@
   </div>
 
   <div class="flex-jc-sp-b">
-    <button #addStudent type="submit">Add</button>
+<!--    <div [ngSwitch]="getIsEditing()">-->
+    <button *ngIf="!isEditing" type="submit">Add</button>
+    <button *ngIf="isEditing" type="submit">Edit</button>
+<!--    </div>-->
     <button type="submit">Clear</button>
   </div>
 </form>

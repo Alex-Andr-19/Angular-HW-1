@@ -71,7 +71,7 @@
 
       <tr *ngFor="let student of getStudents(); let i = index"
           [class]="setClass(student)">
-        <td>№{{i + 1}}</td>
+        <td #number>№{{i + 1}}</td>
         <td>{{student.studentName}}</td>
         <td>{{student.surname}}</td>
         <td>{{student.fatherName}}</td>
@@ -81,6 +81,21 @@
           <button (click)="togglePopUp(student)">
             <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png" width="25px">
           </button>
+          <button (click)="togglePopUpForm(student, 'edit')">
+            <img src="https://toppng.com/uploads/preview/administration-svg-icon-free421851-onlinewebfonts-edit-blue-icon-11553384178sh1bvhzzal.png" width="24px">
+          </button>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button (click)="togglePopUpForm()">Add</button>
         </td>
       </tr>
 
@@ -98,14 +113,8 @@
       </div>
     </div>
 
-    <my-form [rootStudent]="rootStudents" [showStudent]="showStudents"></my-form>
   </div>
 </div>
-
-
-
-
-
 
 
 <div class="popUp" *ngIf="getShowPopUp()">
@@ -114,4 +123,11 @@
     <button (click)="deleteStudent()">Yes</button>
     <button (click)="togglePopUp()">No</button>
   </div>
+</div>
+
+<div class="popUp" *ngIf="getShowPopUpForm()">
+<!--  <div [ngSwitch]="getTryToEditStudent()">-->
+    <my-form *ngIf="getTryToEditStudent()" [rootStudent]="rootStudents" [showStudent]="showStudents" is-editing="true"></my-form>
+    <my-form *ngIf="getTryToAddStudent()" [rootStudent]="rootStudents" [showStudent]="showStudents" is-editing="false"></my-form>
+<!--  </div>-->
 </div>

@@ -80,8 +80,13 @@ td {
   width: 80px;
 
   padding: 8px;
+  margin: 0;
 
   text-align: center;
+}
+
+td:last-child button:last-child {
+  margin-left: 1em;
 }
 
 .popUp {
@@ -90,7 +95,7 @@ td {
   left: 37%;
 
   width: 20%;
-  height: 10%;
+  min-height: 10%;
 
   padding: 1em;
 

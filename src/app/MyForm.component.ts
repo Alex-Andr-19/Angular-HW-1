@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import {Attribute, Component, Input} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Student } from "./Student";
 import {dateValidator} from "./dateValidator.validator";
@@ -28,20 +28,20 @@ export class MyFormComponent {
   isValid: boolean;
   correctYearsOld: boolean;
   correctName: boolean;
+  isEditing: boolean = false;
 
   @Input()
   public rootStudent: Student[] = [];
   @Input()
   public showStudent: Student[] = [];
 
-  constructor() {
+  constructor(@Attribute('is-editing') ie: string) {
     this.isValid = true;
     this.correctYearsOld = true;
     this.correctName = true;
-  }
+    this.isEditing = ie[0] === "t";
 
-  disableButton(el: HTMLButtonElement, byLine: string): void {
-    el.disabled = this.inputForms.get(byLine)?.value !== "";
+    console.log("Form constructor is finished");
   }
 
   submitForm(ev: SubmitEvent): void {
@@ -78,6 +78,7 @@ export class MyFormComponent {
       }
     }
     if (ev.submitter?.innerText === "Clear") {
+      console.log("Here!!!!")
       this.numberForm.get("number")?.setValue("");
       for (let el in this.inputForms.getRawValue()) {
         if (el === "fio") {

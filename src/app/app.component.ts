@@ -14,8 +14,11 @@ export class AppComponent {
   showStudents: Student[] = [];
 
   showPopUp: boolean = false;
+  showPopUpForm: boolean = false;
   // Exemplar of temporary student, which client tries to delete
   tryToDelStudent: Student = new Student("a", "b", "c", new Date(), 0);
+  tryToEditStudent: boolean = false;
+  tryToAddStudent: boolean = false;
 
   enableToNoticeBadMarks: boolean = true;
 
@@ -192,6 +195,10 @@ export class AppComponent {
     return this.showPopUp;
   }
 
+  getShowPopUpForm(): boolean {
+    return this.showPopUpForm;
+  }
+
   togglePopUp(student?: Student): void {
     if (student) {
       this.tryToDelStudent = student;
@@ -217,5 +224,22 @@ export class AppComponent {
     for (const key: string in this.sortParams) {
       this.sortParams[key] = 0;
     }
+  }
+
+  togglePopUpForm(student?: Student, flag: string = 'add'): void {
+    this.showPopUpForm = !this.showPopUpForm;
+    if (flag === 'add') {
+      this.tryToAddStudent = !this.tryToAddStudent;
+    } else {
+      this.tryToEditStudent = !this.tryToEditStudent;
+    }
+  }
+
+  getTryToEditStudent(): boolean {
+    return this.tryToEditStudent;
+  }
+
+  getTryToAddStudent(): boolean {
+    return this.tryToAddStudent;
   }
 }
