@@ -1,0 +1,126 @@
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Father name</th>
+    <th>Older than date</th>
+    <th>Mark</th>
+    <th>DELETE</th>
+  </tr>
+
+  <tr>
+    <td><h1>№</h1></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('name')" [ngSwitch]="sortParams['name']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineName type="text" (input)="findStudent(searchLineName.value, 'name')"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('surname')" [ngSwitch]="sortParams['surname']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineSurname type="text" (input)="findStudent(searchLineSurname.value, 'surname')"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('fatherName')" [ngSwitch]="sortParams['fatherName']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineFatherName type="text" (input)="findStudent(searchLineFatherName.value, 'fatherName')"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('birthDate')" [ngSwitch]="sortParams['birthDate']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+      <input #searchLineBirthDate type="date" (input)="filterStudentsByDate(searchLineBirthDate)"></td>
+    <td>
+      <button class="sortButton" (click)="sortStudent('marks')" [ngSwitch]="sortParams['marks']">
+        <img *ngSwitchCase="0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEX///8AAADy8vL5+fkxMTHS0tJnZ2caGhrBwcGnp6fm5uYmJiaenp7JycmPj49hYWFsbGwgICDr6+vi4uKioqJxcXHIE4NhAAAA6ElEQVR4nO3YWXLCQAwFQIcds5gQcv+rpspAwvqHSkHuPsF75fLMSE0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAvInx6P2Nn7Zb7OYfNXx+Lx70W2bHerHlTb/9JDvRy032lwWn2XFCTP8KttlZgrS/DVfZUYKszgXX2UnCHE4Ns3MEOhbcZMcItOkbbrNjBNr2DWfZMQLN+oZddoxA3UC+Yf3/sP5ZWv8+LPymWQ/mXVp2tvga0HxYc8Zvm2vV9jSH5l6dXdv84a7tqMK+dPS0HQAAAAAAAAAAAAAAAAAAAAAAAAAAAPDP/AAIDxirhtRBUwAAAABJRU5ErkJggg==" width="12px">
+        <img *ngSwitchCase="1" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" width="12px">
+        <img *ngSwitchCase="-1" src="https://www.pinclipart.com/picdir/middle/130-1303175_navigate-up-arrow-comments-icon-arrow-up-svg.png" width="8px">
+      </button>
+
+      <select #markFilter name="markFilter" id="markFilter" (change)="filterStudentsByMarks(markFilter)">
+        <option value="all">All</option>
+        <option value="twoToThree">2 to 3</option>
+        <option value="threeToFour">3 to 4</option>
+        <option value="fourToFive">4 to 5</option>
+      </select>
+    </td>
+    <td>
+      <button (click)="
+        clearFilters(
+          searchLineName,
+          searchLineSurname,
+          searchLineFatherName,
+          searchLineBirthDate,
+          markFilter
+        )">
+        Clear filters
+      </button>
+    </td>
+  </tr>
+
+  <tr *ngFor="let student of getStudents(); let i = index"
+      [class]="setClass(student)">
+    <td #number>№{{i + 1}}</td>
+    <td>{{ student.studentName }}</td>
+    <td>{{ student.surname }}</td>
+    <td>{{ student.fatherName }}</td>
+    <td>{{ student.birthDate | myDatePipe }}</td>
+    <td>{{ student.severalMark }}</td>
+    <td>
+      <button (click)="togglePopUp(student)">
+        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png" width="25px">
+      </button>
+      <button (click)="togglePopUpForm('edit', i + 1)">
+        <img src="https://toppng.com/uploads/preview/administration-svg-icon-free421851-onlinewebfonts-edit-blue-icon-11553384178sh1bvhzzal.png" width="24px">
+      </button>
+    </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <button (click)="togglePopUpForm()">Add</button>
+    </td>
+  </tr>
+
+</table>
+
+<div class="popUp" *ngIf="getShowPopUp()">
+  <h3>Are you sure about that?</h3>
+  <div class="flex-just-sp-ar">
+    <button (click)="deleteStudent()">Yes</button>
+    <button (click)="togglePopUp()">No</button>
+  </div>
+</div>
+
+<div class="popUp" *ngIf="getShowPopUpForm()">
+  <div class="edit" *ngIf="getTryToEditStudent()">
+    <span>№{{ selectedStudent }}</span>
+    <button (click)="togglePopUpForm('edit')" class="closePopUpForm">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/1200px-OOjs_UI_icon_close.svg.png" width="10px">
+    </button>
+    <my-form (validatedClick)="togglePopUpForm('edit')" [rootStudent]="rootStudents" [showStudent]="showStudents" [selectedStudent]="selectedStudent" [isEditing]="true"></my-form>
+  </div>
+
+  <div class="addStudent" *ngIf="getTryToAddStudent()">
+    <button (click)="togglePopUpForm()" class="closePopUpForm">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/1200px-OOjs_UI_icon_close.svg.png" width="10px">
+    </button>
+    <my-form (validatedClick)="togglePopUpForm()" [rootStudent]="rootStudents" [showStudent]="showStudents" [isEditing]="false"></my-form>
+  </div>
+</div>
+{{ runChangeDetection() }}

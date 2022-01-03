@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Student } from "./Student";
+import { Student } from "../app/Student";
 import { dateValidator } from "./dateValidator.validator";
 import { fioValidator } from "./fioValidator.validator";
 import { markValidator } from "./markValidator.validator";
 
 @Component({
   selector: "my-form",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./MyForm.component.html",
   styleUrls: ["./MyForm.component.css"]
 })
@@ -94,5 +95,9 @@ export class MyFormComponent {
     if (this.isValid) {
       this.validatedClick.emit(true);
     }
+  }
+
+  runChangeDetection(): void {
+    console.log('Checking view from -- MyForm -- !!!');
   }
 }

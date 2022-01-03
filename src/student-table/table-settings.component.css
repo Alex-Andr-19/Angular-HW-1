@@ -1,0 +1,16 @@
+.settings {
+  width: 100%;
+
+  padding: 1em;
+
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+
+  float: right;
+}
+.settings .toggleNoticeBadMarks {
+  margin-left: 1em;
+  margin-bottom: 1em;
+
+  display: inline-block;
+}

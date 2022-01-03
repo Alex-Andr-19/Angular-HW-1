@@ -1,0 +1,10 @@
+<div class="settings">
+  <h2>Settings</h2>
+  <span>Notice bad marks</span>
+  <button [ngSwitch]="getNoticeBadMarks()" (click)="toggleNoticeBadMarks()" class="toggleNoticeBadMarks">
+    <span *ngSwitchCase="true">Disable</span>
+    <span *ngSwitchCase="false">Enable</span>
+  </button>
+
+  {{ runChangeDetection() }}
+</div>
