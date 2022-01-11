@@ -12,7 +12,7 @@ export class StudentTableComponent implements OnInit {
   rootStudents: Student[] = [];
   showStudents: Student[] = [];
 
-  @Input() public enableToNoticeBadMarks: boolean = true;
+  settings: object = {enableToNoticeBadMarks: true};
 
   showPopUp: boolean = false;
   showPopUpForm: boolean = false;
@@ -91,7 +91,7 @@ export class StudentTableComponent implements OnInit {
 
       this.selectedStudent = 0;
       this.selectedStudent = -1;
-    }, 430)
+    }, 450)
   }
 
   getStudents(): Student[] {
@@ -105,7 +105,8 @@ export class StudentTableComponent implements OnInit {
       res += "find ";
     }
 
-    if (student.severalMark < 3 && this.enableToNoticeBadMarks) {
+    // @ts-ignore
+    if (student.severalMark < 3 && this.settings.enableToNoticeBadMarks) {
       res += "bad ";
     } else {
       res += "normal ";
@@ -272,6 +273,11 @@ export class StudentTableComponent implements OnInit {
 
   getTryToAddStudent(): boolean {
     return this.tryToAddStudent;
+  }
+
+  toggleNoticeBadMarks(res: boolean): void {
+    // @ts-ignore
+    this.settings.enableToNoticeBadMarks = res;
   }
 
   runChangeDetection(): void {

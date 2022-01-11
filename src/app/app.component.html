@@ -1,13 +1,3 @@
-<div class="main">
-  <div class="left">
-    <app-student-table [enableToNoticeBadMarks]="enableToNoticeBadMarks"></app-student-table>
-
-  </div>
-
-
-  <div class="right">
-    <app-table-settings (eTNBMEmitter)="toggleNoticeBadMarks($event)"></app-table-settings>
-  </div>
-</div>
+<router-outlet></router-outlet>
 
 {{ runChangeDetection() }}

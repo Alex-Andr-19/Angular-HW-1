@@ -11,12 +11,6 @@ export class AppComponent{
 
   constructor() { }
 
-  enableToNoticeBadMarks: boolean = true;
-
-  toggleNoticeBadMarks(res: boolean): void {
-    this.enableToNoticeBadMarks = res;
-  }
-
   runChangeDetection(): void {
     console.log('Checking view from -- app -- !!!');
   }

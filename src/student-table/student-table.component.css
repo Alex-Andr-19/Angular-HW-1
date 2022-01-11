@@ -2,6 +2,23 @@ h1 {
   margin: 0;
 }
 
+.main {
+  padding: 1em;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  width: 75%;
+}
+.right {
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+}
+
 td {
   position: relative;
   width: 80px;
