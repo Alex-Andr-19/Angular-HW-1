@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  staticDataAPI: "https://aleks-andr-19-fast-server.herokuapp.com/dataStatic",
+  lifeDataAPI: "https://aleks-andr-19-fast-server.herokuapp.com/dataSQLite",
 };
 
 /*

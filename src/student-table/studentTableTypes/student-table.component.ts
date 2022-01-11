@@ -1,6 +1,24 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from "@angular/core";
-import { Student } from "./Student";
-import { APIService } from "./api.service";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Student } from "../Student";
+import { APIService } from "../APIs/api.service";
+
+interface APIDate {
+  year: number;
+  month: number;
+  date: number;
+}
+
+interface DataFromAPI {
+  names: string[];
+  surnames: string[];
+  fatherNames: string[];
+  birthDates: APIDate[];
+  severalMarks: number[];
+}
+
+interface SettingI {
+  enableToNoticeBadMarks: boolean;
+}
 
 @Component({
   selector: "app-student-table",
@@ -12,7 +30,7 @@ export class StudentTableComponent implements OnInit {
   rootStudents: Student[] = [];
   showStudents: Student[] = [];
 
-  settings: object = {enableToNoticeBadMarks: true};
+  settings: SettingI = { enableToNoticeBadMarks: true };
 
   showPopUp: boolean = false;
   showPopUpForm: boolean = false;
@@ -29,52 +47,49 @@ export class StudentTableComponent implements OnInit {
     "marks": 0
   };
 
-  tmpAPIData: object = {};
+  tmpAPIData: DataFromAPI = {
+    names: [],
+    surnames: [],
+    fatherNames: [],
+    birthDates: [],
+    severalMarks: []
+  };
 
   constructor(private service: APIService) {
     this.createStudents();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getDataByAPI();
   }
 
-  getDataByAPI() {
+  getDataByAPI(): void {
     this.service.getData().subscribe(
-      (res: object) => {
+      (res: DataFromAPI) => {
         this.tmpAPIData = res;
       },
       (er: object) => {
         console.log("ERR:", er);
-      }
-    )
+      },
+    );
 
   }
 
   createStudents(): void {
     setTimeout(() => {
-      console.log("DB is uploaded");
-
-      // @ts-ignore
       const studentNames: string[] = this.tmpAPIData.names;
-      // @ts-ignore
       const surnames: string[] = this.tmpAPIData.surnames;
-      // @ts-ignore
       const fatherNames: string[] = this.tmpAPIData.fatherNames;
-      const birthDates: Date[] = [];
-      // @ts-ignore
-      for (let i: number = 0; i < this.tmpAPIData.birthDates.length; i++) {
-        birthDates.push(new Date(
-          // @ts-ignore
-          this.tmpAPIData.birthDates[i].year,
-          // @ts-ignore
-          this.tmpAPIData.birthDates[i].month,
-          // @ts-ignore
-          this.tmpAPIData.birthDates[i].date,
-          ))
-      }
-      // @ts-ignore
       const severalMarks: number[] = this.tmpAPIData.severalMarks;
+
+      const birthDates: Date[] = [];
+      for (const el of this.tmpAPIData.birthDates) {
+        birthDates.push(new Date(
+          el.year,
+          el.month,
+          el.date,
+        ));
+      }
 
       for (let i: number = 0; i < studentNames.length; i++) {
         this.rootStudents.push(new Student(
@@ -87,11 +102,7 @@ export class StudentTableComponent implements OnInit {
         this.showStudents.push(this.rootStudents[i]);
       }
 
-    console.log(this.showStudents);
-
-      this.selectedStudent = 0;
-      this.selectedStudent = -1;
-    }, 450)
+    }, 450);
   }
 
   getStudents(): Student[] {
@@ -105,7 +116,6 @@ export class StudentTableComponent implements OnInit {
       res += "find ";
     }
 
-    // @ts-ignore
     if (student.severalMark < 3 && this.settings.enableToNoticeBadMarks) {
       res += "bad ";
     } else {
@@ -276,11 +286,8 @@ export class StudentTableComponent implements OnInit {
   }
 
   toggleNoticeBadMarks(res: boolean): void {
-    // @ts-ignore
     this.settings.enableToNoticeBadMarks = res;
   }
 
-  runChangeDetection(): void {
-    console.log('Checking view from -- studentTable -- !!!');
-  }
+  runChangeDetection(): void { }
 }

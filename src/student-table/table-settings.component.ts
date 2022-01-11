@@ -1,14 +1,12 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-table-settings',
+  selector: "app-table-settings",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './table-settings.component.html',
-  styleUrls: ['./table-settings.component.css']
+  templateUrl: "./table-settings.component.html",
+  styleUrls: ["./table-settings.component.css"]
 })
 export class TableSettingsComponent{
-
-  constructor() { }
 
   enableToNoticeBadMarks: boolean = true;
 
@@ -23,7 +21,5 @@ export class TableSettingsComponent{
     this.eTNBMEmitter.emit(this.enableToNoticeBadMarks);
   }
 
-  runChangeDetection(): void {
-    console.log('Checking view from -- tableSettings -- !!!');
-  }
+  runChangeDetection(): void { }
 }

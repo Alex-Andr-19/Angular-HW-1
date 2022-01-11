@@ -7,10 +7,17 @@
   border-radius: 15px;
 
   float: right;
+
+  display: flex;
+  flex-direction: column;
 }
 .settings .toggleNoticeBadMarks {
   margin-left: 1em;
   margin-bottom: 1em;
 
   display: inline-block;
+}
+
+.settings button {
+  width: 20%;
 }

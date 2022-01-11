@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Student } from "./Student";
-import { dateValidator } from "./dateValidator.validator";
-import { fioValidator } from "./fioValidator.validator";
-import { markValidator } from "./markValidator.validator";
+import { dateValidator } from "./validators/dateValidator.validator";
+import { fioValidator } from "./validators/fioValidator.validator";
+import { markValidator } from "./validators/markValidator.validator";
 
 @Component({
   selector: "my-form",
@@ -97,7 +97,5 @@ export class MyFormComponent {
     }
   }
 
-  runChangeDetection(): void {
-    console.log('Checking view from -- MyForm -- !!!');
-  }
+  runChangeDetection(): void { }
 }

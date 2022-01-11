@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -8,10 +8,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 })
 
 export class AppComponent{
-
-  constructor() { }
-
   runChangeDetection(): void {
-    console.log('Checking view from -- app -- !!!');
+    console.log("Checking view from -- app -- !!!");
   }
 }
