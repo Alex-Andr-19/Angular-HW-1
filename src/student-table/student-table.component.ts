@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
-import {Student} from "../app/Student";
+import {ChangeDetectionStrategy, Component, Input, OnInit} from "@angular/core";
+import { Student } from "./Student";
+import { APIService } from "./api.service";
 
 @Component({
   selector: "app-student-table",
@@ -7,7 +8,7 @@ import {Student} from "../app/Student";
   templateUrl: "./student-table.component.html",
   styleUrls: ["./student-table.component.css"]
 })
-export class StudentTableComponent {
+export class StudentTableComponent implements OnInit {
   rootStudents: Student[] = [];
   showStudents: Student[] = [];
 
@@ -28,33 +29,69 @@ export class StudentTableComponent {
     "marks": 0
   };
 
+  tmpAPIData: object = {};
 
-  constructor() {
-    this.generateStudents();
+  constructor(private service: APIService) {
+    this.createStudents();
   }
 
-  generateStudents(): void {
-    const studentNames: string[] = ["Ivan", "Sergei", "Oleg", "Ilia"];
-    const surnames: string[] = ["Shilov", "Moroshin", "Korchnoi", "Kolosov"];
-    const fatherNames: string[] = ["Sergeevich", "Aleksandrovich", "Valerievich", "Igorevich"];
-    const birthDates: Date[] = [
-      new Date(1999, 2, 2),
-      new Date(2001, 3, 23),
-      new Date(2000, 5, 15),
-      new Date(2000, 9, 16),
-    ];
-    const severalMarks: number[] = [4.3, 4.8, 3.9, 2.8];
+  ngOnInit() {
+    this.getDataByAPI();
+  }
 
-    for (let i: number = 0; i < studentNames.length; i++) {
-      this.rootStudents.push(new Student(
-        studentNames[i],
-        surnames[i],
-        fatherNames[i],
-        birthDates[i],
-        severalMarks[i],
-      ));
-      this.showStudents.push(this.rootStudents[i]);
-    }
+  getDataByAPI() {
+    this.service.getData().subscribe(
+      (res: object) => {
+        this.tmpAPIData = res;
+      },
+      (er: object) => {
+        console.log("ERR:", er);
+      }
+    )
+
+  }
+
+  createStudents(): void {
+    setTimeout(() => {
+      console.log("DB is uploaded");
+
+      // @ts-ignore
+      const studentNames: string[] = this.tmpAPIData.names;
+      // @ts-ignore
+      const surnames: string[] = this.tmpAPIData.surnames;
+      // @ts-ignore
+      const fatherNames: string[] = this.tmpAPIData.fatherNames;
+      const birthDates: Date[] = [];
+      // @ts-ignore
+      for (let i: number = 0; i < this.tmpAPIData.birthDates.length; i++) {
+        birthDates.push(new Date(
+          // @ts-ignore
+          this.tmpAPIData.birthDates[i].year,
+          // @ts-ignore
+          this.tmpAPIData.birthDates[i].month,
+          // @ts-ignore
+          this.tmpAPIData.birthDates[i].date,
+          ))
+      }
+      // @ts-ignore
+      const severalMarks: number[] = this.tmpAPIData.severalMarks;
+
+      for (let i: number = 0; i < studentNames.length; i++) {
+        this.rootStudents.push(new Student(
+          studentNames[i],
+          surnames[i],
+          fatherNames[i],
+          birthDates[i],
+          severalMarks[i],
+        ));
+        this.showStudents.push(this.rootStudents[i]);
+      }
+
+    console.log(this.showStudents);
+
+      this.selectedStudent = 0;
+      this.selectedStudent = -1;
+    }, 430)
   }
 
   getStudents(): Student[] {

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Student } from "../app/Student";
+import { Student } from "./Student";
 import { dateValidator } from "./dateValidator.validator";
 import { fioValidator } from "./fioValidator.validator";
 import { markValidator } from "./markValidator.validator";

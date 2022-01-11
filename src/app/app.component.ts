@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -7,7 +7,9 @@ import {ChangeDetectionStrategy, Component} from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 
-export class AppComponent {
+export class AppComponent{
+
+  constructor() { }
 
   enableToNoticeBadMarks: boolean = true;
 
@@ -18,5 +20,4 @@ export class AppComponent {
   runChangeDetection(): void {
     console.log('Checking view from -- app -- !!!');
   }
-
 }

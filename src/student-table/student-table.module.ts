@@ -7,6 +7,7 @@ import { MyFormComponent } from "./MyForm.component";
 import { TableSettingsComponent } from "./table-settings.component";
 import { StudentTableComponent } from "./student-table.component";
 import { MyDatePipePipe } from "./my-date-pipe.pipe";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -20,11 +21,13 @@ import { MyDatePipePipe } from "./my-date-pipe.pipe";
     CommonModule,
     BrowserModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     StudentTableComponent,
     TableSettingsComponent
   ],
+  providers: [],
   bootstrap: [StudentTableComponent]
 })
 export class StudentTableModule { }

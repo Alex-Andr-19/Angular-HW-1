@@ -93,3 +93,9 @@ td:last-child button:last-child {
 
   padding: 0;
 }
+
+.uploadBtn {
+  margin-top: 1em;
+
+  float: right;
+}
