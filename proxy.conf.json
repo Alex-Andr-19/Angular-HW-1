@@ -1,8 +1,0 @@
-{
-  "/api/*": {
-    "target": "https://aleks-andr-19-fast-server.herokuapp.com",
-    "pathRewrite": {
-      "^/api": ""
-    }
-  }
-}
