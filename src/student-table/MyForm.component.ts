@@ -4,6 +4,7 @@ import { Student } from "./Student";
 import { dateValidator } from "./validators/dateValidator.validator";
 import { fioValidator } from "./validators/fioValidator.validator";
 import { markValidator } from "./validators/markValidator.validator";
+import {APIService} from "./api.service";
 
 @Component({
   selector: "my-form",
@@ -32,11 +33,13 @@ export class MyFormComponent {
   public selectedStudent: number = -1;
   @Input()
   public isEditing: boolean = false;
+  @Input()
+  public lifeDB: boolean = false;
 
   @Output()
   public validatedClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() {
+  constructor(private server: APIService) {
     this.isValid = true;
   }
 
@@ -58,6 +61,21 @@ export class MyFormComponent {
         Number.parseFloat(newStudentProps[2]),
       );
       if (ev.submitter?.innerText === "Add") {
+        this.server.postAdd(
+          newStudent.studentName,
+          newStudent.surname,
+          newStudent.fatherName,
+          newStudent.birthDate,
+          newStudent.severalMark,
+          this.rootStudent.length + 1
+        ).subscribe(
+          (res: object) => {
+            console.log(res);
+          },
+          (er: object) => {
+            console.log("ERR:", er);
+          },
+        );
         this.rootStudent.push(newStudent);
         this.showStudent.push(newStudent);
       } else {
@@ -70,6 +88,16 @@ export class MyFormComponent {
           }
         }
 
+        if (this.lifeDB) {
+          this.server.postEdit(newStudent, this.selectedStudent).subscribe(
+            (res: object) => {
+              console.log(res);
+            },
+            (er: object) => {
+              console.log("ERR:", er);
+            },
+          );
+        }
         this.showStudent[this.selectedStudent - 1] = newStudent;
         this.rootStudent[rootIndexEditedStudent] = newStudent;
       }

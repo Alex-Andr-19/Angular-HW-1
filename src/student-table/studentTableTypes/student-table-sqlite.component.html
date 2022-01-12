@@ -122,14 +122,14 @@
     <button (click)="togglePopUpForm('edit')" class="closePopUpForm">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/1200px-OOjs_UI_icon_close.svg.png" width="10px">
     </button>
-    <my-form (validatedClick)="togglePopUpForm('edit')" [rootStudent]="rootStudents" [showStudent]="showStudents" [selectedStudent]="selectedStudent" [isEditing]="true"></my-form>
+    <my-form (validatedClick)="togglePopUpForm('edit')" [rootStudent]="rootStudents" [showStudent]="showStudents" [selectedStudent]="selectedStudent" [isEditing]="true" [lifeDB]="true"></my-form>
   </div>
 
   <div class="addStudent" *ngIf="getTryToAddStudent()">
     <button (click)="togglePopUpForm()" class="closePopUpForm">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/1200px-OOjs_UI_icon_close.svg.png" width="10px">
     </button>
-    <my-form (validatedClick)="togglePopUpForm()" [rootStudent]="rootStudents" [showStudent]="showStudents" [isEditing]="false"></my-form>
+    <my-form (validatedClick)="togglePopUpForm()" [rootStudent]="rootStudents" [showStudent]="showStudents" [isEditing]="false" [lifeDB]="true"></my-form>
   </div>
 </div>
 {{ runChangeDetection() }}

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Student } from "../Student";
-import { APISQLiteService } from "../APIs/api-sqlite.service";
+import { APIService } from "../api.service";
 
 interface StudentI {
   studentName: string;
@@ -48,7 +48,7 @@ export class StudentTableSQLiteComponent implements OnInit {
 
   tmpAPIData: StudentI[] = [];
 
-  constructor(private service: APISQLiteService) {
+  constructor(private service: APIService) {
     this.createStudents();
   }
 
@@ -57,7 +57,7 @@ export class StudentTableSQLiteComponent implements OnInit {
   }
 
   getDataByAPI(): void {
-    this.service.getData().subscribe(
+    this.service.getDataSQL().subscribe(
       (res: ResponseI) => {
         this.tmpAPIData = res.res;
       },
@@ -65,7 +65,6 @@ export class StudentTableSQLiteComponent implements OnInit {
         console.log("ERR:", er);
       },
     );
-
   }
 
   createStudents(): void {
@@ -140,11 +139,28 @@ export class StudentTableSQLiteComponent implements OnInit {
 
     this.tryToDelStudent.deleted = true;
 
+    let selectedStudent: number = -1;
     for (const el of this.rootStudents) {
       if (!el.deleted) {
         this.showStudents.push(el);
+      } else {
+        for (let i: number = 0; i < this.rootStudents.length; i++) {
+          if (this.rootStudents[i].isEqual(el)) {
+            selectedStudent = i + 1;
+            break;
+          }
+        }
       }
     }
+
+    this.service.postDelete(selectedStudent).subscribe(
+      (res: object) => {
+        console.log(res);
+      },
+      (er: object) => {
+        console.log("ERR:", er);
+      },
+    );
 
     this.togglePopUp();
   }

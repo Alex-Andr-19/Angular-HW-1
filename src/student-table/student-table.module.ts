@@ -12,7 +12,6 @@ import {StudentTableSQLiteComponent } from './studentTableTypes/student-table-sq
 import {RouterModule, Routes} from "@angular/router";
 import {HelpComponent} from "../app/help.component";
 import {NotFoundComponent} from "../app/not-found.component";
-import { PreventEditPopUpComponent } from './preventPopUps/prevent-edit-pop-up.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "static", pathMatch: "full" },
@@ -29,7 +28,6 @@ const appRoutes: Routes = [
     StudentTableComponent,
     TableSettingsComponent,
     StudentTableSQLiteComponent,
-    PreventEditPopUpComponent,
   ],
   imports: [
     BrowserModule,

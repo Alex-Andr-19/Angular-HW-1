@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Student } from "../Student";
-import { APIService } from "../APIs/api.service";
+import { APIService } from "../api.service";
 
 interface APIDate {
   year: number;

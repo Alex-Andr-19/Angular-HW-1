@@ -6,6 +6,10 @@ export const environment = {
   production: false,
   staticDataAPI: "https://aleks-andr-19-fast-server.herokuapp.com/dataStatic",
   lifeDataAPI: "https://aleks-andr-19-fast-server.herokuapp.com/dataSQLite",
+  lifeDataAPIEdit: "https://aleks-andr-19-fast-server.herokuapp.com/edit",
+  lifeDataAPIDelete: "https://aleks-andr-19-fast-server.herokuapp.com/delete",
+  lifeDataAPIAdd: "https://aleks-andr-19-fast-server.herokuapp.com/add",
+  testServer: "http://localhost:3000/add"
 };
 
 /*
